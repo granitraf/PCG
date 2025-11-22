@@ -40,12 +40,12 @@ function Index() {
       <div className="relative max-w-5xl mx-auto flex flex-col items-center z-10">
         
         {/* SECTION 1 — TOP “BOOKING” BADGE */}
-        <div className="relative flex flex-col items-center mt-10 w-full">
+        <div className="relative flex flex-col items-center mt-10 w-full px-4 md:px-0">
           {/* Logo */}
           <img
             src="/PolarCreativeGroupLogo.png"
             alt="Polar Creative Group Logo"
-            className="w-64 md:w-96 mb-10 opacity-95"
+            className="w-48 md:w-96 mb-10 opacity-95"
           />
 
           <div className="relative w-full max-w-[28rem] md:max-w-[32rem]">
@@ -91,8 +91,8 @@ function Index() {
         </div>
 
         {/* SECTION 2 — HERO TEXT + MAIN CTA */}
-        <div className="text-center mt-12 space-y-8 max-w-3xl relative z-30">
-          <h1 className="text-4xl md:text-6xl font-semibold text-neutral-200 leading-[1.1] tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+        <div className="text-center mt-12 space-y-8 max-w-3xl relative z-30 px-4 md:px-0">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-semibold text-neutral-200 leading-[1.1] tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
             Your All-in-One <span className="italic font-semibold drop-shadow-[0_0_25px_rgba(255,255,255,0.5)]">Creative Hub</span><br className="hidden md:block" />
             <span className="text-xl md:text-3xl block mt-6 font-light drop-shadow-none">Solutions at your fingertips</span>
           </h1>
@@ -117,7 +117,7 @@ function Index() {
         </div>
 
         {/* SECTION 4 — SECOND HEADLINE + CTA */}
-        <div className="text-center mt-6 md:mt-8 space-y-6 max-w-2xl">
+        <div className="text-center mt-6 md:mt-8 space-y-6 max-w-2xl px-4 md:px-0">
           <h2 className="text-3xl md:text-5xl font-semibold text-neutral-200 tracking-tight drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
             See the Work Behind the Results.
           </h2>
@@ -131,7 +131,7 @@ function Index() {
         </div>
 
         {/* SECTION 5 — THREE DROPDOWN Q&A BOXES */}
-        <div className="mt-20 w-full max-w-xl">
+        <div className="mt-20 w-full max-w-xl px-4 md:px-0">
           <FAQAccordion />
         </div>
 
