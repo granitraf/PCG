@@ -1,11 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Plus, X } from 'lucide-react';
-import { cn } from '@/lib/utils'; // Assuming utility exists or I'll implement inline if strictly requested, but project has tailwind-merge/clsx in deps so standard utils probably exist or I can just use template literals/clsx. I'll check structure or just implement a local helper if needed.
-// Actually, I'll just use template literals and clsx if available, or standard strings.
-// Checking previous file reads, I don't see a utils file read, but I see clsx and tailwind-merge in package.json. 
-// I will stick to standard template strings + clsx if I can, or just standard strings to be safe.
 
-// Helper for class merging if not available globally
+// Helper for class merging
 function classNames(...classes: (string | undefined | null | false)[]) {
   return classes.filter(Boolean).join(' ');
 }

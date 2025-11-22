@@ -67,7 +67,7 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(_values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
