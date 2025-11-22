@@ -1,14 +1,14 @@
 import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-const VERT = `#version 300 es
+const VERT_WEBGL2 = `#version 300 es
 in vec2 position;
 void main() {
   gl_Position = vec4(position, 0.0, 1.0);
 }
 `;
 
-const FRAG = `#version 300 es
+const FRAG_WEBGL2 = `#version 300 es
 precision highp float;
 
 uniform float uTime;
@@ -107,29 +107,164 @@ void main() {
 }
 `;
 
+const VERT_WEBGL1 = `attribute vec2 position;
+varying vec2 vPosition;
+void main() {
+  vPosition = position;
+  gl_Position = vec4(position, 0.0, 1.0);
+}
+`;
+
+const FRAG_WEBGL1 = `precision mediump float;
+
+uniform float uTime;
+uniform float uAmplitude;
+uniform vec3 uColorStops[3];
+uniform vec2 uResolution;
+uniform float uBlend;
+
+varying vec2 vPosition;
+
+vec3 permute(vec3 x) {
+  return mod(((x * 34.0) + 1.0) * x, 289.0);
+}
+
+float snoise(vec2 v){
+  const vec4 C = vec4(
+      0.211324865405187, 0.366025403784439,
+      -0.577350269189626, 0.024390243902439
+  );
+  vec2 i  = floor(v + dot(v, C.yy));
+  vec2 x0 = v - i + dot(i, C.xx);
+  vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+  vec4 x12 = x0.xyxy + C.xxzz;
+  x12.xy -= i1;
+  i = mod(i, 289.0);
+
+  vec3 p = permute(
+      permute(i.y + vec3(0.0, i1.y, 1.0))
+    + i.x + vec3(0.0, i1.x, 1.0)
+  );
+
+  vec3 m = max(
+      0.5 - vec3(
+          dot(x0, x0),
+          dot(x12.xy, x12.xy),
+          dot(x12.zw, x12.zw)
+      ), 
+      0.0
+  );
+  m = m * m;
+  m = m * m;
+
+  vec3 x = 2.0 * fract(p * C.www) - 1.0;
+  vec3 h = abs(x) - 0.5;
+  vec3 ox = floor(x + 0.5);
+  vec3 a0 = x - ox;
+  m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+
+  vec3 g;
+  g.x  = a0.x  * x0.x  + h.x  * x0.y;
+  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+  return 130.0 * dot(m, g);
+}
+
+struct ColorStop {
+  vec3 color;
+  float position;
+};
+
+vec3 getColor(vec3 colors[3], float factor) {
+  int index = 0;
+  for (int i = 0; i < 2; i++) {
+     ColorStop currentColor = ColorStop(colors[i], float(i) * 0.5);
+     bool isInBetween = currentColor.position <= factor;
+     index = int(mix(float(index), float(i), float(isInBetween)));
+  }
+  ColorStop currentColor = ColorStop(colors[index], float(index) * 0.5);
+  ColorStop nextColor = ColorStop(colors[index + 1], float(index + 1) * 0.5);
+  float range = nextColor.position - currentColor.position;
+  float lerpFactor = (factor - currentColor.position) / range;
+  return mix(currentColor.color, nextColor.color, lerpFactor);
+}
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / uResolution;
+  
+  vec3 colors[3];
+  colors[0] = uColorStops[0];
+  colors[1] = uColorStops[1];
+  colors[2] = uColorStops[2];
+  
+  vec3 rampColor = getColor(colors, uv.x);
+  
+  float height = snoise(vec2(uv.x * 2.0 + uTime * 0.1, uTime * 0.25)) * 0.5 * uAmplitude;
+  height = exp(height);
+  height = (uv.y * 2.0 - height + 0.2);
+  float intensity = 0.6 * height;
+  
+  float midPoint = 0.20;
+  float auroraAlpha = smoothstep(midPoint - uBlend * 0.5, midPoint + uBlend * 0.5, intensity);
+  
+  vec3 auroraColor = intensity * rampColor;
+  
+  gl_FragColor = vec4(auroraColor * auroraAlpha, auroraAlpha);
+}
+`;
+
 export default function Aurora(props) {
-  const { colorStops = ['#5227FF', '#7cff67', '#5227FF'], amplitude = 1.0, blend = 0.5 } = props;
+  const { colorStops = ['#115ED9', '#4B90EB', '#5227FF'], amplitude = 1.0, blend = 0.5 } = props;
   const propsRef = useRef(props);
   propsRef.current = props;
 
   const ctnDom = useRef(null);
+  const [isRendererReady, setRendererReady] = useState(true);
 
   useEffect(() => {
     const ctn = ctnDom.current;
     if (!ctn) return;
 
-    const renderer = new Renderer({
-      alpha: true,
-      premultipliedAlpha: true,
-      antialias: true
-    });
+    let renderer = null;
+
+    try {
+      renderer = new Renderer({
+        alpha: true,
+        premultipliedAlpha: true,
+        antialias: true,
+        webgl:2
+      });
+    } catch (error) {
+      console.warn('WebGL2 not available, falling back to WebGL1', error);
+      try {
+        renderer = new Renderer({
+          alpha: true,
+          premultipliedAlpha: true,
+          antialias: true,
+          contextCreation: { version: 1 }
+        });
+      } catch (fallbackError) {
+        console.error('Could not create WebGL renderer', fallbackError);
+        setRendererReady(false);
+        return;
+      }
+    }
+
     const gl = renderer.gl;
+    if (!gl) {
+      setRendererReady(false);
+      return;
+    }
+
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
     gl.canvas.style.backgroundColor = 'transparent';
 
     let program;
+
+    const useWebGL2 = !!gl.getParameter && typeof WebGL2RenderingContext !== 'undefined' && gl instanceof WebGL2RenderingContext;
+    const vertexShader = useWebGL2 ? VERT_WEBGL2 : VERT_WEBGL1;
+    const fragmentShader = useWebGL2 ? FRAG_WEBGL2 : FRAG_WEBGL1;
 
     function resize() {
       if (!ctn) return;
@@ -153,8 +288,8 @@ export default function Aurora(props) {
     });
 
     program = new Program(gl, {
-      vertex: VERT,
-      fragment: FRAG,
+      vertex: vertexShader,
+      fragment: fragmentShader,
       uniforms: {
         uTime: { value: 0 },
         uAmplitude: { value: amplitude },
@@ -194,7 +329,11 @@ export default function Aurora(props) {
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [amplitude]);
+  }, [amplitude, blend, colorStops]);
+
+  if (!isRendererReady) {
+    return null;
+  }
 
   return <div ref={ctnDom} className="w-full h-full" />;
 }

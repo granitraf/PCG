@@ -3,6 +3,8 @@ import LogoLoop from '@/components/LogoLoop'
 import Aurora from '@/components/Aurora'
 import FAQAccordion from '@/components/FAQAccordion'
 import { SparklesCore } from '@/components/ui/sparkles'
+import { ButtonPortfolio } from '@/components/ui/button-portfolio'
+import ContactFormModal from '@/components/ContactFormModal'
 
 // Alternative with image sources
 const imageLogos = [
@@ -20,13 +22,14 @@ export const Route = createFileRoute('/')({
 })
 
 function Index() {
+  const mailtoHref = 'mailto:hello@polarcreativegroup.com?subject=PCG%20Meeting%20Request&body=Hi%20PCG%2C%0A%0AI%27m%20interested%20in%20working%20together.%0AHere%27s%20what%20I%27m%20looking%20for%3A%0A';
   return (
     <div className="min-h-screen text-neutral-200 px-6 py-10 relative overflow-hidden font-sans">
       
       {/* Aurora Background - Lowest Layer */}
       <div className="fixed inset-0 -z-50 overflow-hidden">
         <Aurora 
-          colorStops={["#3A29FF", "#FF94B4", "#FF3232"]} 
+          colorStops={["#005BD1", "#006FFF", "#8ABDFF"]} 
           blend={0.5} 
           amplitude={1.0} 
           speed={0.5} 
@@ -89,15 +92,13 @@ function Index() {
 
         {/* SECTION 2 — HERO TEXT + MAIN CTA */}
         <div className="text-center mt-12 space-y-8 max-w-3xl relative z-30">
-          <h1 className="text-4xl md:text-6xl font-semibold text-neutral-200 leading-[1.1] tracking-tight">
-            All of Your Problems Solved <span className="italic font-semibold">Instantly</span><br className="hidden md:block" />
-            <span className="text-xl md:text-3xl block mt-6 font-light">Your All-in-One<span className="italic font-normal"> Creative Hub</span></span>
+          <h1 className="text-4xl md:text-6xl font-semibold text-neutral-200 leading-[1.1] tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+            Your All-in-One <span className="italic font-semibold drop-shadow-[0_0_25px_rgba(255,255,255,0.5)]">Creative Hub</span><br className="hidden md:block" />
+            <span className="text-xl md:text-3xl block mt-6 font-light drop-shadow-none">Solutions at your fingertips</span>
           </h1>
           
           <div className="pt-2 w-full flex flex-col items-center">
-            <button className="px-8 py-4 bg-neutral-100 text-black rounded-lg font-medium hover:bg-neutral-200 transition-colors duration-200">
-              BOOK A MEETING
-            </button>
+            <ContactFormModal />
             
             <div className="w-full flex justify-center my-12 md:my-16 overflow-hidden">
               {/* Basic horizontal loop */}
@@ -109,8 +110,6 @@ function Index() {
                 gap={40}
                 hoverSpeed={30}
                 scaleOnHover
-                fadeOut
-                fadeOutColor="#000000"
                 ariaLabel="Partners"
               />
             </div>
@@ -129,19 +128,15 @@ function Index() {
 
         {/* SECTION 4 — SECOND HEADLINE + CTA */}
         <div className="text-center mt-24 space-y-6 max-w-2xl">
-          <h2 className="text-3xl md:text-5xl font-semibold text-neutral-200 tracking-tight">
-            All-in-One Creative Solutions, at Your Fingertips
+          <h2 className="text-3xl md:text-5xl font-semibold text-neutral-200 tracking-tight drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+            See the Work Behind the Results.
           </h2>
           
           <div className="pt-2">
-            <a 
-              href="https://www.figma.com/design/87o3htBweaHRyGs9kXW2Ac/PCG---PORTFOLIO?node-id=0-1&p=f"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-8 py-4 bg-neutral-900 border border-neutral-700 text-neutral-200 rounded-lg hover:bg-neutral-800 transition-colors duration-200 font-medium"
-            >
-              VIEW OUR PORTFOLIO
-            </a>
+            <ButtonPortfolio
+              label="VIEW OUR PORTFOLIO"
+              onClick={() => window.open("https://www.figma.com/design/87o3htBweaHRyGs9kXW2Ac/PCG---PORTFOLIO?node-id=0-1&p=f", "_blank")}
+            />
           </div>
         </div>
 
