@@ -1,0 +1,66 @@
+$ tsc && vite build
+src/components/Aurora/index.ts(1,25): error TS2307: Cannot find module './Aurora.jsx' or its corresponding type declarations.
+src/components/ContactForm.tsx(70,21): error TS6133: 'values' is declared but its value is never read.
+src/components/FAQAccordion.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/components/FAQAccordion.tsx(3,1): error TS6133: 'cn' is declared but its value is never read.
+src/components/LogoLoop.tsx(17,21): error TS7006: Parameter 'value' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(21,13): error TS7019: Rest parameter 'parts' implicitly has an 'any[]' type.
+src/components/LogoLoop.tsx(25,28): error TS7006: Parameter 'callback' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(25,38): error TS7006: Parameter 'elements' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(25,48): error TS7006: Parameter 'dependencies' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(43,36): error TS7006: Parameter 'ref' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(61,25): error TS7006: Parameter 'observer' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(71,25): error TS7006: Parameter 'seqRef' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(71,33): error TS7006: Parameter 'onLoad' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(71,41): error TS7006: Parameter 'dependencies' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(105,20): error TS7006: Parameter 'img' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(127,22): error TS7006: Parameter 'img' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(143,27): error TS7006: Parameter 'trackRef' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(143,37): error TS7006: Parameter 'targetVelocity' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(143,53): error TS7006: Parameter 'seqWidth' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(143,63): error TS7006: Parameter 'seqHeight' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(143,74): error TS7006: Parameter 'isHovered' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(143,85): error TS7006: Parameter 'hoverSpeed' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(143,97): error TS7006: Parameter 'isVertical' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(207,21): error TS7006: Parameter 'timestamp' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(217,49): error TS18047: 'lastTimestampRef.current' is possibly 'null'.
+src/components/LogoLoop.tsx(255,7): error TS2322: Type 'number' is not assignable to type 'null'.
+src/components/LogoLoop.tsx(261,5): error TS2322: Type 'number' is not assignable to type 'null'.
+src/components/LogoLoop.tsx(289,5): error TS2339: Property 'logos' does not exist on type '{}'.
+src/components/LogoLoop.tsx(291,5): error TS2339: Property 'speed' does not exist on type '{}'.
+src/components/LogoLoop.tsx(293,5): error TS2339: Property 'direction' does not exist on type '{}'.
+src/components/LogoLoop.tsx(295,5): error TS2339: Property 'width' does not exist on type '{}'.
+src/components/LogoLoop.tsx(297,5): error TS2339: Property 'logoHeight' does not exist on type '{}'.
+src/components/LogoLoop.tsx(299,5): error TS2339: Property 'gap' does not exist on type '{}'.
+src/components/LogoLoop.tsx(301,5): error TS2339: Property 'pauseOnHover' does not exist on type '{}'.
+src/components/LogoLoop.tsx(303,5): error TS2339: Property 'hoverSpeed' does not exist on type '{}'.
+src/components/LogoLoop.tsx(305,5): error TS2339: Property 'fadeOut' does not exist on type '{}'.
+src/components/LogoLoop.tsx(307,5): error TS2339: Property 'fadeOutColor' does not exist on type '{}'.
+src/components/LogoLoop.tsx(309,5): error TS2339: Property 'scaleOnHover' does not exist on type '{}'.
+src/components/LogoLoop.tsx(311,5): error TS2339: Property 'renderItem' does not exist on type '{}'.
+src/components/LogoLoop.tsx(313,5): error TS2339: Property 'ariaLabel' does not exist on type '{}'.
+src/components/LogoLoop.tsx(315,5): error TS2339: Property 'className' does not exist on type '{}'.
+src/components/LogoLoop.tsx(317,5): error TS2339: Property 'style' does not exist on type '{}'.
+src/components/LogoLoop.tsx(383,52): error TS2339: Property 'clientWidth' does not exist on type 'never'.
+src/components/LogoLoop.tsx(385,44): error TS2339: Property 'getBoundingClientRect' does not exist on type 'never'.
+src/components/LogoLoop.tsx(393,52): error TS2339: Property 'parentElement' does not exist on type 'never'.
+src/components/LogoLoop.tsx(399,36): error TS2339: Property 'style' does not exist on type 'never'.
+src/components/LogoLoop.tsx(401,34): error TS2339: Property 'style' does not exist on type 'never'.
+src/components/LogoLoop.tsx(409,50): error TS2339: Property 'clientHeight' does not exist on type 'never'.
+src/components/LogoLoop.tsx(507,8): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(507,14): error TS7006: Parameter 'key' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(711,25): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/components/LogoLoop.tsx(711,31): error TS7006: Parameter 'itemIndex' implicitly has an 'any' type.
+src/components/ui/form.tsx(16,9): error TS6133: 'id' is declared but its value is never read.
+src/components/ui/form.tsx(117,49): error TS2339: Property 'name' does not exist on type 'FormItemContextValue'.
+src/components/ui/form.tsx(127,24): error TS2339: Property 'name' does not exist on type 'FormItemContextValue'.
+src/components/ui/sparkles.tsx(2,8): error TS6133: 'React' is declared but its value is never read.
+src/components/ui/sparkles.tsx(2,24): error TS6133: 'useMemo' is declared but its value is never read.
+src/lib/emailjs.ts(2,27): error TS2339: Property 'env' does not exist on type 'ImportMeta'.
+src/lib/emailjs.ts(3,28): error TS2339: Property 'env' does not exist on type 'ImportMeta'.
+src/lib/emailjs.ts(4,27): error TS2339: Property 'env' does not exist on type 'ImportMeta'.
+src/routes/__root.tsx(17,20): error TS2339: Property 'env' does not exist on type 'ImportMeta'.
+src/routes/index.tsx(3,20): error TS7016: Could not find a declaration file for module '@/components/Aurora'. '/Users/granitrrafshi/Desktop/PCGSITE/src/components/Aurora.jsx' implicitly has an 'any' type.
+src/routes/index.tsx(25,9): error TS6133: 'mailtoHref' is declared but its value is never read.
+src/routes/index.tsx(106,17): error TS2322: Type '{ logos: any; speed: number; direction: string; logoHeight: number; gap: number; hoverSpeed: number; scaleOnHover: true; ariaLabel: string; }' is not assignable to type 'IntrinsicAttributes & object'.
+  Property 'logos' does not exist on type 'IntrinsicAttributes & object'.

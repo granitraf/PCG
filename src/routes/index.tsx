@@ -22,7 +22,6 @@ export const Route = createFileRoute('/')({
 })
 
 function Index() {
-  const mailtoHref = 'mailto:hello@polarcreativegroup.com?subject=PCG%20Meeting%20Request&body=Hi%20PCG%2C%0A%0AI%27m%20interested%20in%20working%20together.%0AHere%27s%20what%20I%27m%20looking%20for%3A%0A';
   return (
     <div className="min-h-screen text-neutral-200 px-6 py-10 relative overflow-hidden font-sans">
       
