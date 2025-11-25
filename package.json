@@ -4,12 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-<<<<<<< Current (Your changes)
     "generate": "tsr generate",
     "build": "bun run generate && tsc && vite build",
-=======
-    "build": "vite build",
->>>>>>> Incoming (Background Agent changes)
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
