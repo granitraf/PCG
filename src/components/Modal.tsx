@@ -19,11 +19,11 @@ export default function Modal({
 
   return (
     <div 
-      className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[9999]"
+      className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[9999] overflow-y-auto py-10"
       onClick={handleBackdropClick}
     >
       <div 
-        className="bg-neutral-900 border border-neutral-700 rounded-2xl p-6 w-full max-w-xl relative modal-blur-in max-h-[90vh] overflow-y-auto sm:overflow-visible mx-4 sm:mx-0"
+        className="bg-neutral-900 border border-neutral-700 rounded-2xl p-6 w-full max-w-xl relative modal-blur-in max-h-[90vh] overflow-y-auto mx-4 sm:mx-0"
         onClick={(e) => e.stopPropagation()} // Prevent clicks inside modal from closing it
       >
 
